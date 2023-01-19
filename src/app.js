@@ -3,7 +3,7 @@ const { sequelize } = require("./db/connection");
 const { createMovie } = require("./movies/function");
 
 async function app(yargsInput) {
-  await sequelize.sync();
+  await sequelize.sync({ alter: true });
   if (yargsInput.create) {
     //place code to create a movie here
     await createMovie({
@@ -19,6 +19,16 @@ async function app(yargsInput) {
     //place code to update director field here
   } else if (yargsInput.delete) {
     //place code to delete a movie from our table here
+    const movieDelete = await Movie.findOne({
+      where: { title: yargsInput.title },
+    });
+    if (deletedMovie) {
+      movieDelete.actor = yargsInput.title;
+      await movieDelete.save();
+      console.log("Movie deleted.");
+    } else {
+      console.log("Not found");
+    }
   } else {
     console.log("Unrecognized Yargs command");
   }
