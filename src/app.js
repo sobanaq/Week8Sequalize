@@ -15,6 +15,16 @@ async function app(yargsInput) {
     //place code to list all our movies here
   } else if (yargsInput.updateActor) {
     //place code to update actor field here
+    const updateActor = await Movie.findOne({
+      where: { title: yargsInput.title },
+    });
+    if (updateActor) {
+      updateActor.actor = yargsInput.actor;
+      await updateActor.save();
+      console.log("Actor updated");
+    } else {
+      console.log("Not found");
+    }
   } else if (yargsInput.updateDirector) {
     //place code to update director field here
     const updateDirector = await Movie.findOne({
