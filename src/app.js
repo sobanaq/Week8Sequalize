@@ -1,9 +1,9 @@
 const yargs = require("yargs");
-console.log("yargs imported");
+// console.log("yargs imported");
 const { sequelize } = require("./db/connection");
-console.log("connection made");
+// console.log("connection made");
 const { createMovie } = require("./movies/function");
-const Movie = require("./movies/table");
+// const Movie = require("./movies/table");
 console.log("create movie imported");
 
 async function app(yargsInput) {
@@ -41,7 +41,7 @@ async function app(yargsInput) {
     //This is a new array where we are saying find title, actor and director and push this data
     //onto the new array. Then we use console.table(newArray-this is what we called the new array see line 25).
     //The data pushed onto the newArray now displays as a neat table.
-    // console.log(title, actor, director);
+    //console.log(title, actor, director);
   }
   console.table(newArray);
     //------------------------------------------------------------------------------------------------------
