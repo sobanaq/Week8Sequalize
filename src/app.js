@@ -17,6 +17,16 @@ async function app(yargsInput) {
     //place code to update actor field here
   } else if (yargsInput.updateDirector) {
     //place code to update director field here
+    const updateDirector = await Movie.findOne({
+      where: { director: yargsInput.director },
+    });
+    if (newDirector) {
+      updateDirector.actor = yargsInput.director;
+      await updateDirector.save();
+      console.log("Director updated");
+    } else {
+      console.log("Not found");
+    }
   } else if (yargsInput.delete) {
     //place code to delete a movie from our table here
     const movieDelete = await Movie.findOne({
